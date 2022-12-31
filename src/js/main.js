@@ -11,6 +11,8 @@ const countdownContainer = document.querySelector(".countdown-container");
 // Variables.
 let countdown;
 let isNewYear = false;
+var mp3Url = "media.mp3"
+var player = new Audio(mp3Url);
 
 // Events.
 window.addEventListener('click', (e) => {shootFirework(e.clientX, e.clientY)});
@@ -102,13 +104,14 @@ function setNewyearText() {
     info.innerHTML = "";
     countdownContainer.innerHTML = "<div class=\"new-year\"><p>Happy New Year!</p></div>";
     setTimeout(() => {document.querySelector(".new-year").style = 'transform: scale(1);'},100);
+    player.play();
 }
 
 // Main.
 (function () {
     const currentTime = new Date();
-    const newYear = new Date(currentTime.getFullYear() + 1, 0, 1);
-    const dayAfter = new Date(currentTime.getFullYear() + 1, 0, 2);
+    const newYear = new Date("2023-01-01 00:00:00");
+    const dayAfter = new Date("2023-01-02 00:00:00");
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone.split("/")[1].replace("_", " ");
     info.textContent = `Time until ${getDayString(newYear.getDay())}, ${getMonthString(newYear.getMonth())} ${newYear.getDate()}, ${newYear.getFullYear()} (${timeZone} Time)`;
